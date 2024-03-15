@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="animlogo" />
+    <string name="welcome_to_carflip">Welcome to CarFlip!</string>
+    <string name="next_btn" />
+    <string name="onboardingpage" />
+    <string name="onbocarimage1">onbocarimage1</string>
+    <string name="find_your_perfect_ride">Find Your Perfect Ride</string>
+    <string name="description2">Search for cars based on your preferences. Filter by make, model, price range, and more. Whether you\'re looking for a sleek sedan, a rugged SUV, or a fuel-efficient hybrid, CarFlip has got you covered.</string>
+    <string name="onbocarimage2" />
+    <string name="sell_your_car_hassle_free">Sell Your Car Hassle-Free</string>
+    <string name="username">username</string>
+    <string name="greetings">greetings</string>
+    <string name="locationbutton">LocationButton</string>
+    <string name="search">Search</string>
+    <string name="menu">menu</string>
+    <string name="loan">loan</string>
+    <string name="calculator">Calculator</string>
+    <string name="_3_00_000">₹ 3,00,000</string>
+    <string name="select_the_car_for_loan">Select The Car For Loan</string>
+    <string name="loan_car_name">Loan Car Name</string>
+    <string name="loan_time">LOAN TIME</string>
+    <string name="_0_years">0 years</string>
+    <string name="_160_years">160 years</string>
+    <string name="_20">20%</string>
+    <string name="interest_rate">INTEREST RATE</string>
+    <string name="_14">14%</string>
+    <string name="_0">0%</string>
+    <string name="_0_">0</string>
+    <string name="down_payment">DOWN PAYMENT</string>
+    <string name="loan_amount">LOAN AMOUNT</string>
+    <string name="_0_months">0 months</string>
+    <string name="calculate">calculate</string>
+    <string name="loan_time_months">LOAN TIME (months)</string>
+    <string name="_12_months">12 months</string>
+    <string name="this_is_buy_page">this is buy page</string>
+    <string name="monthly_payment">monthly_payment</string>
+    <string name="search_for_cars">Search For Cars</string>
+    <string name="explore_by_brands">Explore By Brands</string>
+    <string name="sell">sell</string>
+    <string name="rs100">rs100</string>
+    <string name="carname">carname</string>
+    <string name="buycar">buycar</string>
+    <string name="see_all_cars">See All Cars</string>
+    <string name="filter_button">filter button</string>
+    <string name="car_by_brands">Car By Brands</string>
+    <string name="price">price</string>
+    <string name="profile">profile</string>
+    <string name="profile_edit">profile edit</string>
+    <string name="email_id">email_id</string>
+    <string name="profile_text">Profile</string>
+
+
+
+
+    <string name="new_user">Register now</string>
+    <string name="forget_password">forget password?</string>
+    <string name="create_password">Create password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="name">Enter Full Name</string>
+    <string name="existing_user">Existing user?</string>
+    <string name="forgot_password_On_frp">forgot password?</string>
+    <string name="don_t_worry_we_got_you_just_enter_your_registered_email_and_its_done">Don\'t worry we got you,just enter your registered email and its done</string>
+    <string name="provide_your_registered_email">Provide your registered email</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="go_back">Go Back</string>
+    <string name="recovery_email_sent_successfully_check_your_inbox">Recovery email sent successfully! Check your Inbox</string>
+    <string name="default_web_client_id">YOUR_CLIENT_ID_HERE</string>
+    <string name="favorite_button">favorite_button</string>
+    <string name="favorite_button_arrow">"favorite_button_arrow "</string>
+    <string name="your_favorite_cars">Your Favorite Cars</string>
+</resources>

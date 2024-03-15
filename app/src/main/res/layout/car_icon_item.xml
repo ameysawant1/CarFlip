@@ -1,0 +1,15 @@
+<!-- Create a new layout file (car_icon_item.xml) in the res/layout folder -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/carIconImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/carbgicon"
+        android:contentDescription="Car Icon"
+        android:src="@drawable/ferrari" />
+
+</RelativeLayout>

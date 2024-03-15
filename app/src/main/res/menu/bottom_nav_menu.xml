@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_loan"
+        android:icon="@drawable/compare_icon"
+        android:title="@string/loan" />
+
+    <item
+        android:id="@+id/navigation_buy"
+        android:icon="@drawable/buy_car_icon"
+        android:title="@string/buy" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/profile" />
+
+</menu>

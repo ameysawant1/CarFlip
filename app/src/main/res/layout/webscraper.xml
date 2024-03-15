@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- TextViews to display car name, price, and image URL -->
+    <TextView
+        android:id="@+id/carNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car Name:"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/carPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car Price:"
+        android:textSize="16sp"
+        android:layout_below="@id/carNameTextView"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/carImageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Car Image URL:"
+        android:textSize="16sp"
+        android:layout_below="@id/carPriceTextView"
+        android:layout_marginTop="8dp"/>
+
+    <ImageView
+        android:id="@+id/carImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/carImageTextView"
+        android:layout_marginTop="59dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</RelativeLayout>

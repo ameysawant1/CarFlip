@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--light themes-->
+    <color name="WelcomeGrey">#28272E</color>
+    <color name="GG">#808080</color>
+    <color name="success_green">#11A10C</color>
+    <color name="failure_red">#FF2020</color>
+
+
+    <!--dark themes-->
+
+
+    <color name="black">#FF000000</color>
+    <color name="white">#F8F8FF</color>
+    <color name="splash_screen_color">#FF5F48</color>
+</resources>
