@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.carflip.R;
-import com.example.carflip.homepageadapter.CarIconsAdapter;
-import com.example.carflip.ui.home.HomeFragment;
 
 import java.util.List;
+
 
 public class PopularCarsAdapter extends RecyclerView.Adapter<PopularCarsAdapter.ViewHolder> {
     private List<popularcarsmodel> popularCarsList;
@@ -39,24 +38,22 @@ public class PopularCarsAdapter extends RecyclerView.Adapter<PopularCarsAdapter.
         return popularCarsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView carImageView;
         private TextView carNameTextView;
         private TextView carPriceTextView;
-        private TextView carLocationTextView;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             carImageView = itemView.findViewById(R.id.popularcarsimages);
             carNameTextView = itemView.findViewById(R.id.popularcarsname);
             carPriceTextView = itemView.findViewById(R.id.popularcarsprice);
-            carLocationTextView = itemView.findViewById(R.id.popularcarslocation);
         }
 
         public void bind(popularcarsmodel car) {
             carNameTextView.setText(car.getCarName());
             carPriceTextView.setText(car.getCarPrice());
-            carLocationTextView.setText(car.getCarLocation());
 
             // Load image into ImageView using Glide
             Glide.with(itemView.getContext())

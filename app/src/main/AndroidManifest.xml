@@ -55,6 +55,11 @@
             android:exported="true"
             android:theme="@style/Theme.CarFlip.NoActionBarAndStatusBar"/>
 
+        <activity android:name=".CarLogoActivity"
+            android:exported="true"
+            android:theme="@style/Theme.CarFlip.NoActionBarAndStatusBar"/>
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

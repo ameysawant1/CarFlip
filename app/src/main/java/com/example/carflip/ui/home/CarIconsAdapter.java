@@ -1,7 +1,7 @@
 package com.example.carflip.ui.home;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,40 +13,47 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.carflip.R;
+import com.example.carflip.CarLogoActivity;
 
-public class CarIconsAdapter<ImageView2> extends ArrayAdapter<Integer> {
+public class CarIconsAdapter extends ArrayAdapter<Integer> {
 
-    public CarIconsAdapter(@NonNull Context context, Integer[] icons) {
-        super(context, 0, icons);
+    private Integer[] carIcons;
+    private Context context;
+
+    public CarIconsAdapter(@NonNull Context context, Integer[] carIcons) {
+        super(context, 0, carIcons);
+        this.carIcons = carIcons;
+        this.context = context;
     }
 
-    @SuppressLint("WrongViewCast")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        // Get the data item for this position
         Integer iconId = getItem(position);
 
-        // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.car_icon_item, parent, false);
         }
 
-        // Lookup view for data population
         ImageView imageView = convertView.findViewById(R.id.imageViewCarIcon);
 
-        // Populate the data into the template view using the data object
         if (imageView != null && iconId != null) {
-            imageView.getClass();
+            imageView.setImageResource(carIcons[position]);
         } else {
-            // Handle the case when imageView or iconId is null
             Log.e("CarIconsAdapter", "ImageView or iconId is null at position " + position);
         }
 
-        // Return the completed view to render on screen
+        // Set OnClickListener on convertView
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open CarLogoActivity with the clicked car logo
+                Intent intent = new Intent(context, CarLogoActivity.class);
+                intent.putExtra("car_logo", carIcons[position]); // Pass the car logo resource id
+                context.startActivity(intent);
+            }
+        });
+
         return convertView;
     }
-
 }
-
-

@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/navigation_loan"
-        android:icon="@drawable/compare_icon"
+        android:icon="@drawable/money"
         android:title="@string/loan" />
 
     <item

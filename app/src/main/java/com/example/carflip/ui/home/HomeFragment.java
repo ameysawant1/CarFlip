@@ -3,10 +3,10 @@ package com.example.carflip.ui.home;
 import static com.example.carflip.R.id.imageViewCarIcon;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +22,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.carflip.CarLogoActivity;
 import com.example.carflip.R;
 import com.example.carflip.homepageadapter.CarIconsAdapter;
 import com.example.carflip.homepageadapter.PopularCarsAdapter;
 import com.example.carflip.homepageadapter.popularcarsmodel;
-import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,21 +44,18 @@ public class HomeFragment extends Fragment {
     private final ArrayList<popularcarsmodel> arrPopularCars = new ArrayList<>();
     private TextView greetingTextView;
     private GridView carIconsGridView;
+    private RecyclerView popularCarsRecyclerView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView popularCarsRecyclerView = root.findViewById(R.id.popularcars);
-        RecyclerView popularCarsRecyclerView2 = root.findViewById(R.id.popularcars2);
         greetingTextView = root.findViewById(R.id.greetings);
-        carIconsGridView = root.findViewById(imageViewCarIcon); // Corrected GridView
+        carIconsGridView = root.findViewById(imageViewCarIcon);
+        popularCarsRecyclerView = root.findViewById(R.id.popularcars);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         popularCarsRecyclerView.setLayoutManager(layoutManager);
-
-        LinearLayoutManager layoutManager2 = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
-        popularCarsRecyclerView2.setLayoutManager(layoutManager2);
 
         // Execute AsyncTask to fetch popular cars data
         new FetchPopularCarsTask().execute();
@@ -88,7 +85,7 @@ public class HomeFragment extends Fragment {
                     String carPrice = carElement.select("div.ver_onlakd1").text().trim();
                     String carImage = carElement.select("img").attr("data-original");
 
-                    popularcarsmodel car = new popularcarsmodel(carImage, carName, carPrice, "Location"); // Replace "Location" with the actual location if available
+                    popularcarsmodel car = new popularcarsmodel(carImage, carName, carPrice);
                     popularCarsList.add(car);
                 }
             } catch (IOException e) {
@@ -104,10 +101,7 @@ public class HomeFragment extends Fragment {
 
             // Create and set the adapter
             PopularCarsAdapter adapter = new PopularCarsAdapter(popularCarsList);
-            RecyclerView popularCarsRecyclerView = getView().findViewById(R.id.popularcars);
             popularCarsRecyclerView.setAdapter(adapter);
-            RecyclerView popularCarsRecyclerView2 = getView().findViewById(R.id.popularcars2);
-            popularCarsRecyclerView2.setAdapter(adapter);
         }
     }
 
@@ -136,7 +130,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupCarIcons() {
-        Integer[] carIcons = {R.drawable.hyundai, R.drawable.ferrari, R.drawable.ford, R.drawable.mercedes, R.drawable.audi, R.drawable.chevrolet, R.drawable.nissan, R.drawable.volkswagen};
+        Integer[] carIcons = {R.drawable.maruti_suzuki, R.drawable.tata, R.drawable.hyundai, R.drawable.mahindra, R.drawable.bmw, R.drawable.toyota, R.drawable.honda, R.drawable.more_icon};
         CarIconsAdapter adapter = new CarIconsAdapter(requireContext(), carIcons);
         carIconsGridView.setAdapter(adapter);
 
@@ -144,8 +138,9 @@ public class HomeFragment extends Fragment {
     }
 
     public void onCarIconClicked(int position) {
-        int selectedCarIcon = position;
-        Toast.makeText(requireContext(), "Selected Car Icon: " + selectedCarIcon, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(requireContext(), CarLogoActivity.class); // Replace CarLogoActivity with the actual activity or fragment name
+        intent.putExtra("selectedCarIcon", position); // Pass any data to the new activity or fragment if needed
+        startActivity(intent);
     }
 
     private void checkLocationPermission() {

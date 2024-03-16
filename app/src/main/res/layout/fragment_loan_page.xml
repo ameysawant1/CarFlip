@@ -5,14 +5,18 @@
 
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
 
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -249,7 +253,9 @@
                     android:layout_marginEnd="10dp"
                     android:text="@string/price"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" /><TextView
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
                     android:id="@+id/loan_amount_starting_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -263,26 +269,21 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/select_car_layout"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loan_cal_appbar">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <Button
+                <ImageView
                     android:id="@+id/select_car"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/car_select_bg"
-                    android:drawableTop="@drawable/plus"
                     android:elevation="0dp"
-                    android:padding="40dp"
-                    android:text="@string/select_the_car_for_loan"
-                    android:textSize="19sp"
-                    android:theme="@style/Theme.CarFlip"
+                    android:foreground="@drawable/car_select_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:srcCompat="@drawable/car_image_1" />
 
                 <TextView
                     android:id="@+id/name_of_car"
@@ -375,10 +376,13 @@
 
             <Button
                 android:id="@+id/button_to_calculate_loan"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="50dp"
+                android:background="@drawable/login_bar"
                 android:text="@string/calculate"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

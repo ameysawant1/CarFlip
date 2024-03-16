@@ -15,7 +15,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -32,6 +31,7 @@ android {
         viewBinding = true
     }
 }
+
 
 dependencies {
 
@@ -65,11 +65,17 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+
     implementation("com.google.firebase:firebase-analytics")
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
 
 
     var lottieVersion = "6.4.0"
     implementation ("com.airbnb.android:lottie:$lottieVersion")
+
+
 }
 

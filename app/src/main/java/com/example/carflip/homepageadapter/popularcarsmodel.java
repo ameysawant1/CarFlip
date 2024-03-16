@@ -4,10 +4,9 @@ public class popularcarsmodel {
     String carimage;
     String carname, carprice, carlocation;
 
-    public popularcarsmodel(String carimage, String carname, String carprice, String carlocation) {
+    public popularcarsmodel(String carimage, String carname, String carprice) {
         this.carname = carname;
         this.carprice = carprice;
-        this.carlocation = carlocation;
         this.carimage = carimage;
     }
 
@@ -23,7 +22,4 @@ public class popularcarsmodel {
         return carprice;
     }
 
-    public String getCarLocation() {
-        return carlocation;
-    }
 }

@@ -11,6 +11,13 @@ import com.example.carflip.R;
 
 public class BuycarsAdapter extends RecyclerView.Adapter<BuycarsAdapter.ViewHolder> {
 
+    private OnItemClickListener onItemClickListener; // Define an interface for item click listener
+
+    // Constructor to initialize the item click listener
+    public BuycarsAdapter(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -20,19 +27,31 @@ public class BuycarsAdapter extends RecyclerView.Adapter<BuycarsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Bind data to views here
+        // Leave this empty for now since you don't want to display any data yet
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        // Return the size of your data set here
+        // Return a fixed size of 0
         return 0;
     }
 
+    // Define an interface for item click listener
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    // Define ViewHolder class
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Initialize views here
+            // Initialize views here if needed
         }
     }
 }

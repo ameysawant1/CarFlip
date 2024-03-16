@@ -10,7 +10,7 @@
 
     <!--dark themes-->
 
-
+    <color name="transparent">#00000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#F8F8FF</color>
     <color name="splash_screen_color">#FF5F48</color>
