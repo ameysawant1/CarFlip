@@ -3,6 +3,7 @@ package com.example.carflip.ui.home;
 import static com.example.carflip.R.id.imageViewCarIcon;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -26,6 +27,7 @@ import com.example.carflip.CarLogoActivity;
 import com.example.carflip.R;
 import com.example.carflip.homepageadapter.CarIconsAdapter;
 import com.example.carflip.homepageadapter.PopularCarsAdapter;
+import com.example.carflip.homepageadapter.TopCarsAdapter;
 import com.example.carflip.homepageadapter.popularcarsmodel;
 
 import org.jsoup.Jsoup;
@@ -40,16 +42,31 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 123;
-
+    private GridView mTopCarsGridView;
+    private TopCarsAdapter mTopCarsAdapter;
     private final ArrayList<popularcarsmodel> arrPopularCars = new ArrayList<>();
     private TextView greetingTextView;
     private GridView carIconsGridView;
     private RecyclerView popularCarsRecyclerView;
+    private Activity view;
+    private View root;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // Find the GridView by ID
+        mTopCarsGridView = root.findViewById(R.id.topcars);
+
+        // Initialize the adapter
+        mTopCarsAdapter = new TopCarsAdapter(requireContext());
+
+        // Call the fetchData method to fetch data from Firebase
+        mTopCarsAdapter.fetchData();
+
+        // Set the adapter to the GridView
+        mTopCarsGridView.setAdapter(mTopCarsAdapter);
         greetingTextView = root.findViewById(R.id.greetings);
         carIconsGridView = root.findViewById(imageViewCarIcon);
         popularCarsRecyclerView = root.findViewById(R.id.popularcars);

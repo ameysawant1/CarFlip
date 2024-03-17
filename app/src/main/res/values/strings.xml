@@ -106,5 +106,9 @@
     <string name="favorite_button">favorite_button</string>
     <string name="favorite_button_arrow">"favorite_button_arrow "</string>
     <string name="your_favorite_cars">Your Favorite Cars</string>
+    <string name="go_in">go in</string>
+    <string name="maruti_suzukialto_800">Maruti SuzukiAlto 800</string>
+    <string name="_3_54_l">₹ 3.54 L</string>
+    <string name="carimage">carimage</string>
 
 </resources>

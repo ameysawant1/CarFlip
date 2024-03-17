@@ -21,7 +21,7 @@ public class CarLogoActivity extends AppCompatActivity {
         int carLogoResourceId = getCarLogoResource(selectedCarIcon);
 
         // Find the ImageView in the layout and set the car logo
-        ImageView carLogoImageView = findViewById(R.id.imageViewCarLogo);
+        ImageView carLogoImageView = findViewById(R.id.default_car_logo);
         carLogoImageView.setImageResource(carLogoResourceId);
 
         // Check if the displayed car logo is the default one
