@@ -7,7 +7,7 @@
 
     <!-- TextViews to display car name, price, and image URL -->
     <TextView
-        android:id="@+id/carNameTextView"
+        android:id="@+id/textViewCarBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Car Name:"
@@ -15,29 +15,29 @@
         android:layout_marginTop="16dp"/>
 
     <TextView
-        android:id="@+id/carPriceTextView"
+        android:id="@+id/textViewCarName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Car Price:"
         android:textSize="16sp"
-        android:layout_below="@id/carNameTextView"
+        android:layout_below="@id/textViewCarBrand"
         android:layout_marginTop="8dp"/>
 
     <TextView
-        android:id="@+id/carImageTextView"
+        android:id="@+id/textViewCarPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Car Image URL:"
         android:textSize="16sp"
-        android:layout_below="@id/carPriceTextView"
+        android:layout_below="@id/textViewCarName"
         android:layout_marginTop="8dp"/>
 
     <ImageView
-        android:id="@+id/carImageView"
+        android:id="@+id/imageViewCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/carImageTextView"
-        android:layout_marginTop="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="500dp"
         tools:srcCompat="@tools:sample/avatars" />
 
 </RelativeLayout>
