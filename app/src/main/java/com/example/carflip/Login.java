@@ -1,64 +1,49 @@
-package com.example.carflip.authentication;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.carflip;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.carflip.MainActivity;
 import com.example.carflip.R;
-import com.example.carflip.authentication.forget_passwordActivity;
+import com.example.carflip.forget_passwordActivity;
+import com.example.carflip.Register2;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.FirebaseApp;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class Login extends AppCompatActivity {
-    TextInputEditText editTextEmail, editTextPassword;
-
+    TextInputEditText editTextEmail;
     Button buttonLogin;
-
     FirebaseAuth mAuth;
-
     ProgressBar progressBar;
-
     TextView textView, forget_pass;
+    GoogleSignInClient mGoogleSignInClient;
 
     SignInButton Google_sign_inbtn;
-    GoogleSignInOptions gso;
-    GoogleSignInClient gsc;
+    private static final int RC_SIGN_IN = 9001;
+
+    TextInputLayout passwordLayout;
 
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +51,27 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        // Configure Google Sign In
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+
+        // Configure Google Sign-In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        gsc = GoogleSignIn.getClient(this, gso);
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        //Stay user Logged in
+
 
         editTextEmail = findViewById(R.id.forget_email);
-        editTextPassword = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.btn_login);
         progressBar = findViewById(R.id.login_progressBar);
         textView = findViewById(R.id.registerNow);
-
         forget_pass = findViewById(R.id.forget_password);
         Google_sign_inbtn = findViewById(R.id.google_sign_inbtn);
-        // Google sign-in method
-        Google_sign_inbtn.setOnClickListener(v -> singIn());
+         passwordLayout = findViewById(R.id.password);
+        EditText passwordEditText = passwordLayout.getEditText();
+
+        Google_sign_inbtn.setOnClickListener(v -> signInWithGoogle());
 
         forget_pass.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), forget_passwordActivity.class);
@@ -91,7 +80,7 @@ public class Login extends AppCompatActivity {
         });
 
         textView.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), com.example.carflip.authentication.Register2.class);
+            Intent intent = new Intent(getApplicationContext(), Register2.class);
             startActivity(intent);
             finish();
         });
@@ -99,7 +88,7 @@ public class Login extends AppCompatActivity {
         buttonLogin.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email = editTextEmail.getText().toString().trim();
-            String password = editTextPassword.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
 
             if (TextUtils.isEmpty(email)) {
                 Toast.makeText(Login.this, "Enter Email", Toast.LENGTH_SHORT).show();
@@ -133,49 +122,55 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void singIn() {
-        Intent signInIntent = gsc.getSignInIntent();
-        startActivityForResult(signInIntent, 1000);
-    }
+    private void signInWithGoogle() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d("GoogleSignIn", "firebaseAuthWithGoogle:" + acct.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d("GoogleSignIn", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            navigateToMainActivity();
-                        } else {
-                            Log.w("GoogleSignIn", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    private void navigateToMainActivity() {
-        Intent intent = new Intent(Login.this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1000) {
+
+        if (requestCode == RC_SIGN_IN) {
+            // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
+                // Google Sign-In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
             } catch (ApiException e) {
-                Log.e("GoogleSignInError", "Google sign in failed", e);
-                Toast.makeText(getApplicationContext(), "Google Sign-In failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                // Google Sign-In failed
+                Toast.makeText(this, "Google Sign-In failed.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+         mAuth.signInWithCredential(credential)
+               .addOnCompleteListener(this, task -> {
+                  if (task.isSuccessful()) {
+                        // Sign-in successful, update UI with the signed-in user's information
+                      FirebaseUser user = mAuth.getCurrentUser();
+                  } else {
+                     // Sign-in failed
+                  Toast.makeText(Login.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                 }
+            });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser()!= null){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.carflip.authentication;
+package com.example.carflip;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.carflip.Login;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -91,7 +91,7 @@ public class forget_passwordActivity extends AppCompatActivity {
         goback_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), com.example.carflip.authentication.Login.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.carflip.Login.class);
                 startActivity(intent);
                 finish();
 

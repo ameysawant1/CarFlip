@@ -9,10 +9,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.carflip" />
+                  <option name="mobileSdkAppId" value="1:870131437048:android:b85068b503621af9019a0d" />
+                  <option name="projectId" value="carflip-94e49" />
+                  <option name="projectNumber" value="870131437048" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

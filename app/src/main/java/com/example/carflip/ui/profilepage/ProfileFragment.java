@@ -15,8 +15,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.carflip.Login;
 import com.example.carflip.R;
-import com.example.carflip.authentication.Login;
+import com.example.carflip.Login;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,11 +33,17 @@ public class ProfileFragment extends Fragment {
     private TextView textView;
     private ImageView profileImageView;
     private FirebaseUser user;
-
+    private GoogleSignInClient mGoogleSignInClient;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
 
         auth = FirebaseAuth.getInstance();
 
@@ -63,10 +75,20 @@ public class ProfileFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Sign out from Firebase
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(requireContext(), Login.class);
-                startActivity(intent);
-                requireActivity().finish();
+
+                // Sign out from Google Sign-In
+                mGoogleSignInClient.signOut().addOnCompleteListener(requireActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // After signing out from both Firebase and Google Sign-In, navigate to the login page
+                        Intent intent = new Intent(requireContext(), Login.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        requireActivity().finish();
+                    }
+                });
             }
         });
 
