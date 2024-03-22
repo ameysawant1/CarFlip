@@ -1,4 +1,4 @@
-package com.example.carflip.authentication;
+package com.example.carflip;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,22 +8,24 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.carflip.MainActivity;
-import com.example.carflip.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Register2 extends AppCompatActivity {
 
-    TextInputEditText editTextEmail,editTextPassword,confirmPassword;
+    TextInputEditText editTextEmail;
+    EditText editTextPassword;
+    TextInputEditText confirmPassword;
 
     Button buttonReg;
 
@@ -51,7 +53,8 @@ public class Register2 extends AppCompatActivity {
         setContentView(R.layout.activity_register2);
         editTextEmail = findViewById(R.id.forget_email);
         mAuth = FirebaseAuth.getInstance();
-        editTextPassword= findViewById(R.id.password);
+        TextInputLayout layoutPassword = findViewById(R.id.password);
+        editTextPassword = layoutPassword.getEditText();
         buttonReg = findViewById(R.id.btn_register);
         ProgressBar = findViewById(R.id.ProgressBar);
         textView = findViewById(R.id.loginNow);

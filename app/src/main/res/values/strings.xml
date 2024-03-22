@@ -102,7 +102,7 @@
     <string name="reset_password">Reset Password</string>
     <string name="go_back">Go Back</string>
     <string name="recovery_email_sent_successfully_check_your_inbox">Recovery email sent successfully! Check your Inbox</string>
-    <string name="default_web_client_id">YOUR_CLIENT_ID_HERE</string>
+    <string name="default_web_client_id">870131437048-tqfas8lo2dasvv6pa56rcnq7j24hcj7l.apps.googleusercontent.com</string>
     <string name="favorite_button">favorite_button</string>
     <string name="favorite_button_arrow">"favorite_button_arrow "</string>
     <string name="your_favorite_cars">Your Favorite Cars</string>
@@ -110,5 +110,6 @@
     <string name="maruti_suzukialto_800">Maruti SuzukiAlto 800</string>
     <string name="_3_54_l">₹ 3.54 L</string>
     <string name="carimage">carimage</string>
+    <string name="asset_statements" />
 
 </resources>

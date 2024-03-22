@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
     <application
@@ -41,17 +42,17 @@
 
 
         <activity
-            android:name=".authentication.Login"
+            android:name=".Login"
             android:exported="true"
             android:theme="@style/Theme.CarFlip.NoActionBarAndStatusBar"/>
 
         <activity
-            android:name=".authentication.forget_passwordActivity"
+            android:name=".forget_passwordActivity"
             android:exported="false"
             android:theme="@style/Theme.CarFlip.NoActionBarAndStatusBar"/>
 
         <activity
-            android:name=".authentication.Register2"
+            android:name=".Register2"
             android:exported="true"
             android:theme="@style/Theme.CarFlip.NoActionBarAndStatusBar"/>
 
@@ -62,7 +63,11 @@
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+            android:resource="@array/preloaded_fonts"/>
+
+          <meta-data android:name="asset_statements"
+            android:resource="@string/asset_statements" />
+
 
     </application>
 

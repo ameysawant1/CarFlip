@@ -13,10 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.carflip.MainActivity;
 import com.example.carflip.R;
-import com.example.carflip.authentication.Login;
-import com.example.carflip.authentication.Register2;
+import com.example.carflip.Login;
+import com.example.carflip.Register2;
 
 public class OnboardingActivity extends AppCompatActivity {
 
